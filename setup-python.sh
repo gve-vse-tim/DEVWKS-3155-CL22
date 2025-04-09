@@ -27,4 +27,4 @@ export NDFC_PASS=C1sco12345
 
 # Set up Ansible switch discovery credentials
 export SWITCH_USER=admin
-export SWITCH_PASS=C1sco12345
+export SWITCH_PASS='C1sco12345!'
