@@ -7,7 +7,7 @@ all:
       hosts:
         # host_vars/dcloud_dcnm.yaml
         dcloud_dcnm:
-          ansible_host: 198.18.134.200
+          ansible_host: 198.18.134.100
           ansible_user: admin
           ansible_ssh_pass: C1sco12345
           ansible_httpapi_validate_certs: False
@@ -15,40 +15,50 @@ all:
           ansible_network_os: cisco.dcnm.dcnm
     fabric1:
       hosts:
-        leaf1:
+        site1_l1:
           ansible_host: 198.18.4.101
           ansible_user: admin
           ansible_ssh_pass: C1sco12345
           # ansible_network_os: cisco.nxos.nxos
-        spine1:
+        site1_l2:
           ansible_host: 198.18.4.102
           ansible_user: admin
           ansible_ssh_pass: C1sco12345
           # ansible_network_os: cisco.nxos.nxos
-        bgw1:
+        site1_bl1:
           ansible_host: 198.18.4.103
+          ansible_user: admin
+          ansible_ssh_pass: C1sco12345
+          # ansible_network_os: cisco.nxos.nxos
+        site1_s1:
+          ansible_host: 198.18.4.104
+          ansible_user: admin
+          ansible_ssh_pass: C1sco12345
+          # ansible_network_os: cisco.nxos.nxos
+        site1_s2:
+          ansible_host: 198.18.4.105
+          ansible_user: admin
+          ansible_ssh_pass: C1sco12345
+          # ansible_network_os: cisco.nxos.nxos
+        site1_bgw1:
+          ansible_host: 198.18.4.106
           ansible_user: admin
           ansible_ssh_pass: C1sco12345
           # ansible_network_os: cisco.nxos.nxos
     fabric2:
       hosts:
-        leaf2:
-          ansible_host: 198.18.4.203
-          ansible_user: admin
-          ansible_ssh_pass: C1sco12345
-          # ansible_network_os: cisco.nxos.nxos
-        leaf3:
+        site2_l1:
           ansible_host: 198.18.4.201
           ansible_user: admin
           ansible_ssh_pass: C1sco12345
           # ansible_network_os: cisco.nxos.nxos
-        spine2:
+        site2_s1:
           ansible_host: 198.18.4.202
           ansible_user: admin
           ansible_ssh_pass: C1sco12345
           # ansible_network_os: cisco.nxos.nxos
-        bgw2:
-          ansible_host: 198.18.4.204
+        site2_bgw1:
+          ansible_host: 198.18.4.203
           ansible_user: admin
           ansible_ssh_pass: C1sco12345
           # ansible_network_os: cisco.nxos.nxos

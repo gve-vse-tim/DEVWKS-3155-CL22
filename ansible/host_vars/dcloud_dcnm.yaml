@@ -1,17 +1,16 @@
 ---
 # file: hosts_vars/dcloud_dcnm.yaml
 
+# Forget Site2 for this revision
 site2:
   fabric_name: "Brownfield"
   fabric_template: "Easy_Fabric"
-  bgw2_ip: "198.18.4.204"
+  bgw2_ip: "198.18.4.203"
   bgw2_role: "border_gateway"
   spine2_ip: "198.18.4.202"
   spine2_role: "spine"
-  leaf2_ip: "198.18.4.203"
+  leaf2_ip: "198.18.4.201"
   leaf2_role: "leaf"
-  leaf3_ip: "198.18.4.201"
-  leaf3_role: "leaf"
   vrfs:
     - vrf_name: Overlay
       vrf_id: 51000
@@ -40,16 +39,34 @@ site2:
 
 site1:
   fabric_name: "Greenfield"
-  fabric_template: "LAN_Classic"
-  bgw1_ip: "198.18.4.103"
+  fabric_template: "External_Fabric"
+  bgw1_ip: "198.18.4.106"
   bgw1_role: "core router"
-  bgw1_serial: 9YXAIQGJNBZ
-  bgw1_name: "BGW-1"
-  spine1_ip: "198.18.4.102"
+  bgw1_serial: 9WI7FS9YW2Y
+  bgw1_name: "Site1-BGW1"
+  bgw1_platform: "N9K-C9300v"
+  bgw1_version: "10.3(1)"
+  spine1_ip: "198.18.4.104"
   spine1_role: "aggregation"
-  spine1_serial: 9XBDJK1CPWA
-  spine1_name: "Spine-1"
+  spine1_serial: 9A58GFZ5DD4
+  spine1_name: "Site1-S1"
+  spine1_platform: "N9K-C9300v"
+  spine1_version: "10.3(1)"
+  spine2_ip: "198.18.4.105"
+  spine2_role: "aggregation"
+  spine2_serial: 9E0LMXJ0SUS
+  spine2_name: "Site1-S2"
+  spine2_platform: "N9K-C9300v"
+  spine2_version: "10.3(1)"
   leaf1_ip: "198.18.4.101"
   leaf1_role: "access"
-  leaf1_serial: 9JMVH9DP8CJ
-  leaf1_name: "Leaf-1"
+  leaf1_serial: 9H3NIVJ0I80
+  leaf1_name: "Site1-L1"
+  leaf1_platform: "N9K-C9300v"
+  leaf1_version: "10.3(1)"
+  leaf2_ip: "198.18.4.102"
+  leaf2_role: "access"
+  leaf2_serial: 9XPIFKSI4N7
+  leaf2_name: "Site1-L2"
+  leaf2_platform: "N9K-C9300v"
+  leaf2_version: "10.3(1)"
