@@ -44,6 +44,7 @@
               cmds:
                 - ip router ospf 3155 area 0.0.0.0
           - name: Ethernet1/1
+            deploy: true
             switch:
               - "{{ site1.bgw1_ip }}"
             type: eth
