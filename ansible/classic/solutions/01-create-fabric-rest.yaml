@@ -34,7 +34,8 @@
       "SNMP_SERVER_HOST_TRAP": "true",
       "ENABLE_NXAPI": "true",
       "ENABLE_NXAPI_HTTP": "true",
-      "enableRealTimeBackup": "true"
+      "enableRealTimeBackup": "true",
+      "BGP_AS": "{{ site1.bgp_as }}"
     }
 
   tasks:
