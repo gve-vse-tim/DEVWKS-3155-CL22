@@ -3,8 +3,12 @@
 # Even though this is set up as a bash script, you must 'source' it to
 # work properly and be in a position to move forward.
 
+# dCloud Jumphost steps
+# sudo apt update
+# sudo apt install python3.10-venv -y
+
 # Create Python Virtual Environment
-python3.12 -m venv venv
+python3.10 -m venv venv
 source venv/bin/activate
 
 # Install Python required modules
@@ -17,7 +21,7 @@ ansible-galaxy collection install -r requirements.yaml
 # pip install utils/dcnm_lan_fabric-0.2.4-py3-none-any.whl
 
 # Set up NDFCCTL connection credentials
-export NDFC_HOST=198.18.134.100
+export NDFC_HOST=198.18.133.100
 export NDFC_USER=admin
 export NDFC_PASS=C1sco12345
 

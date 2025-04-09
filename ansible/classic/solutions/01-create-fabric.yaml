@@ -35,6 +35,7 @@
         config:
         - FABRIC_NAME: "{{ site1.fabric_name }}"
           FABRIC_TYPE: "LAN_CLASSIC"
+          BGP_AS: "{{ site1.bgp_as }}"
           IS_READ_ONLY: false
           PM_ENABLE: true
           SNMP_SERVER_HOST_TRAP: true
