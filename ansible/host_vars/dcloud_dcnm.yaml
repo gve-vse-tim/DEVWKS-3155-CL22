@@ -38,9 +38,9 @@ site2:
       is_layer2_only: true
 
 site1:
-  fabric_name: "Greenfield"
-  fabric_template: "External_Fabric"
-  fabric_type: "LAN_CLASSIC"
+  fabric_name: Greenfield
+  fabric_template: LAN_CLASSIC
+  fabric_type: LAN_CLASSIC
   bgp_as: 65111
   bgw1_ip: "198.18.4.106"
   bgw1_role: "core router"

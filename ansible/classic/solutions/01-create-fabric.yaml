@@ -42,4 +42,5 @@
           ENABLE_NXAPI: true
           ENABLE_NXAPI_HTTP: true
           enableRealTimeBackup: true
+          DEPLOY: true
 
