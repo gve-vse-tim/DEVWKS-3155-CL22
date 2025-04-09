@@ -39,7 +39,7 @@ site2:
 
 site1:
   fabric_name: Greenfield
-  fabric_template: LAN_CLASSIC
+  fabric_template: External_Fabric
   fabric_type: LAN_CLASSIC
   bgp_as: 65111
   bgw1_ip: "198.18.4.106"
