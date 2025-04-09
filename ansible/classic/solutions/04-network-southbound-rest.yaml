@@ -29,6 +29,14 @@
       MODE: "CE"
 
   tasks:
+    - name: Read in SVI JSON Data
+      shell: cat svi_data.json
+      register: svi_config_output
+
+    - name: Create fact with SVI JSON data
+      set_fact:
+        svi_data: "{{ svi_config_output.stdout | from_json }}"
+
     # deploy = yes, because interfaces will need them next
     - name: Enable SVI Feature, Create VLAN on Aggregate
       dcnm_policy:
@@ -46,29 +54,18 @@
           - switch:
             - ip: "{{ site1.spine1_ip }}"
 
+    - name: Check if SVI exists
+      dcnm_rest:
+        method: GET
+        path: "/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/interface?ifName=Vlan2305"
+      register: svi_details
+
     - name: Create VLAN SVI
-      dcnm_interface:
-        check_deploy: true
-        fabric: "{{ site1.fabric_name }}"
-        state: merged
-        config:
-          - name: "Vlan2305"
-            type: svi
-            switch:
-              - "{{ site1.spine1_ip }}"
-            profile:
-              int_vrf: "default"
-              ipv4_addr: "192.168.5.1"
-              ipv4_mask_len: 24
-              mtu: 1500
-              route_tag: 12345
-              disable_ip_redirects: true
-              enable_hsrp: false
-              admin_state: true
-              cmds:
-              - no shutdown
-              - ip route ospf 3155 area 0.0.0.0
-            deploy: true
+      dcnm_rest:
+        method: POST
+        path: "/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/interface"
+        data: "{{ svi_data | to_json }}"
+      when: svi_details is defined and ( svi_details | type_debug == 'list' ) and ( svi_details | length == 0 )
 
     - name: Create VLAN on Access
       dcnm_policy:
