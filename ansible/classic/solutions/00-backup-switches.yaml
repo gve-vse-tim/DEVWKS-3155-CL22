@@ -1,0 +1,24 @@
+# file: backup-switches.yaml
+# Backup switch configs to the local Ansible control workstation
+
+# Gather current localhost facts for use in timestamps
+- hosts: localhost
+  become: false
+  gather_facts: true
+  connection: local
+
+# Back up Nexus switch configs
+- hosts: fabric1
+  gather_facts: false
+
+  vars:
+    my_date_time: "{{ hostvars['localhost']['ansible_date_time']['date'] }}"
+    export_directory: "./"
+
+  tasks:
+  - name: Export running config to Ansible client (running.{{ my_date_time }})
+    nxos_config:
+      backup: yes
+      backup_options:
+        dir_path: "{{ export_directory }}"
+        filename: "{{ inventory_hostname }}_running_{{ my_date_time }}.cfg"
