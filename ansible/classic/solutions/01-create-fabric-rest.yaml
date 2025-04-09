@@ -26,19 +26,21 @@
     switch_username: "{{ lookup('env', 'SWITCH_USER') }}"
     switch_password: "{{ lookup('env', 'SWITCH_PASS') }}"
 
+    # Must populate this with information discovered from REST API
+    fabric_data: {
+      "FABRIC_NAME": "{{ site1.fabric_name }}",
+      "IS_READ_ONLY": "false",
+      "PM_ENABLE": "true",
+      "SNMP_SERVER_HOST_TRAP": "true",
+      "ENABLE_NXAPI": "true",
+      "ENABLE_NXAPI_HTTP": "true",
+      "enableRealTimeBackup": "true"
+    }
+
   tasks:
     # Create the Fabric
     - name: "Create the Classic fabric: '{{ site1.fabric_name }}'"
-      # https://galaxy.ansible.com/ui/repo/published/cisco/dcnm/content/module/dcnm_fabric/
-      dcnm_fabric:
-        state: merged
-        config:
-        - FABRIC_NAME: "{{ site1.fabric_name }}"
-          FABRIC_TYPE: "LAN_CLASSIC"
-          IS_READ_ONLY: false
-          PM_ENABLE: true
-          SNMP_SERVER_HOST_TRAP: true
-          ENABLE_NXAPI: true
-          ENABLE_NXAPI_HTTP: true
-          enableRealTimeBackup: true
-
+      dcnm_rest:
+        method: POST
+        path: "/appcenter/cisco/ndfc/api/v1/lan-fabric/rest/control/fabrics/{{ site1.fabric_name }}/{{ site1.fabric_template }}"
+        data: "{{ fabric_data | to_json }}"
