@@ -1,3 +1,5 @@
 collections:
   - name: cisco.dcnm
     version: 3.7.0
+  - name: cisco.nxos
+    version: 9.4.0

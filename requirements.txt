@@ -1,3 +1,4 @@
 ansible-core ~= 2.15.1
 requests ~= 2.32.1
 jmespath ~= 1.0.0
+paramiko ~= 3.5.1

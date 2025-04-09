@@ -11,6 +11,9 @@
 - hosts: fabric1
   gather_facts: false
 
+  collections:
+    - cisco.nxos
+
   vars:
     my_date_time: "{{ hostvars['localhost']['ansible_date_time']['date'] }}"
     export_directory: "./"
