@@ -57,6 +57,7 @@
             switch:
               - "{{ site1.spine1_ip }}"
             profile:
+              mode: vlan
               int_vrf: "default"
               ipv4_addr: "192.168.5.1"
               ipv4_mask_len: 24
