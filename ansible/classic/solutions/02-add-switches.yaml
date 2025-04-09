@@ -1,5 +1,6 @@
 #
-# Add switch and set role with REST API
+# Add switch and set role with REST API. As of 2023, DCNM_INVENTORY module
+# only supported adding switches to VXLAN EVPN fabric types.
 #
 
 - hosts: dcnm
@@ -18,7 +19,7 @@
     switch_password: "{{ lookup('env', 'SWITCH_PASS') }}"
 
     switch_data: {
-      "seedIP": "{{ site1.leaf1_ip }},{{ site1.spine1_ip }},{{ site1.bgw1_ip }}",
+      "seedIP": "{{ site1.leaf1_ip }},{{ site1.leaf2_ip }},{{ site1.spine1_ip }},{{ site1.spine2_ip }},{{ site1.bgw1_ip }}",
       "preserveConfig": "true",
       "username": "{{ switch_username }}",
       "password": "{{ switch_password }}",
@@ -27,25 +28,41 @@
           "deviceIndex": "{{ site1.leaf1_name }}-n9k({{ site1.leaf1_serial }})",
           "sysName": "{{ site1.leaf1_name }}",
           "ipaddr": "{{ site1.leaf1_ip }}",
-          "platform": "N9K-9000v",
+          "platform": "{{ site1.leaf1_platform }}",
           "serial_number": "{{ site1.leaf1_serial }}",
-          "version": "9.2(3)"
+          "version": "{{ site1.leaf1_version }}"
+        },
+        {
+          "deviceIndex": "{{ site1.leaf2_name }}-n9k({{ site1.leaf2_serial }})",
+          "sysName": "{{ site1.leaf2_name }}",
+          "ipaddr": "{{ site1.leaf2_ip }}",
+          "platform": "{{ site1.leaf2_platform }}",
+          "serial_number": "{{ site1.leaf2_serial }}",
+          "version": "{{ site1.leaf2_version }}"
         },
         {
           "deviceIndex": "{{ site1.spine1_name }}-n9k({{ site1.spine1_serial }})",
           "sysName": "{{ site1.spine1_name }}",
           "ipaddr": "{{ site1.spine1_ip }}",
-          "platform": "N9K-9000v",
+          "platform": "{{ site1.spine1_platform }}",
           "serial_number": "{{ site1.spine1_serial }}",
-          "version": "9.2(3)"
+          "version": "{{ site1.spine1_version }}"
+        },
+        {
+          "deviceIndex": "{{ site1.spine2_name }}-n9k({{ site1.spine2_serial }})",
+          "sysName": "{{ site1.spine2_name }}",
+          "ipaddr": "{{ site1.spine2_ip }}",
+          "platform": "{{ site1.spine2_platform }}",
+          "serial_number": "{{ site1.spine2_serial }}",
+          "version": "{{ site1.spine2_version }}"
         },
         {
           "deviceIndex": "{{ site1.bgw1_name }}-n9k({{ site1.bgw1_serial }})",
           "sysName": "{{ site1.bgw1_name }}",
           "ipaddr": "{{ site1.bgw1_ip }}",
-          "platform": "N9K-9000v",
+          "platform": "{{ site1.bgw1_platform }}",
           "serial_number": "{{ site1.bgw1_serial }}",
-          "version": "9.2(3)"
+          "version": "{{ site1.bgw1_version }}"
         }
       ]
     }
@@ -60,8 +77,16 @@
             "role": "{{ site1.spine1_role }}"
         }
       - {
+            "serialNumber": "{{ site1.spine2_serial }}",
+            "role": "{{ site1.spine2_role }}"
+        }
+      - {
             "serialNumber": "{{ site1.leaf1_serial }}",
             "role": "{{ site1.leaf1_role }}"
+        }
+      - {
+            "serialNumber": "{{ site1.leaf2_serial }}",
+            "role": "{{ site1.leaf2_role }}"
         }
 
   tasks:
