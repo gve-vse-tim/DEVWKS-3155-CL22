@@ -34,7 +34,7 @@
         state: merged
         config:
         - FABRIC_NAME: "{{ site1.fabric_name }}"
-          FABRIC_TYPE: "LAN_CLASSIC"
+          FABRIC_TYPE: "{{ site1.fabric_type }}"
           BGP_AS: "{{ site1.bgp_as }}"
           IS_READ_ONLY: false
           PM_ENABLE: true

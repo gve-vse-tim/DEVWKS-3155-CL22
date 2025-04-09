@@ -40,7 +40,8 @@ site2:
 site1:
   fabric_name: "Greenfield"
   fabric_template: "External_Fabric"
-  bgp_as: "65111"
+  fabric_type: "LAN_CLASSIC"
+  bgp_as: 65111
   bgw1_ip: "198.18.4.106"
   bgw1_role: "core router"
   bgw1_serial: 9WI7FS9YW2Y
@@ -55,13 +56,13 @@ site1:
   spine1_version: "10.3(1)"
   spine2_ip: "198.18.4.105"
   spine2_role: "aggregation"
-  spine2_serial: 9E0LMXJ0SUS
+  spine2_serial: 9E0LMXJOSUS
   spine2_name: "Site1-S2"
   spine2_platform: "N9K-C9300v"
   spine2_version: "10.3(1)"
   leaf1_ip: "198.18.4.101"
   leaf1_role: "access"
-  leaf1_serial: 9H3NIVJ0I80
+  leaf1_serial: 9H3NIVJ0I8O
   leaf1_name: "Site1-L1"
   leaf1_platform: "N9K-C9300v"
   leaf1_version: "10.3(1)"
