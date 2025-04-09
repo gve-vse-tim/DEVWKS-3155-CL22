@@ -17,48 +17,57 @@ all:
       hosts:
         site1_l1:
           ansible_host: 198.18.4.101
-          ansible_user: admin
-          ansible_ssh_pass: C1sco12345
-          # ansible_network_os: cisco.nxos.nxos
+          ansible_user: "{{ lookup('env', 'SWITCH_USER') }}"
+          ansible_ssh_pass: "{{ lookup('env', 'SWITCH_PASS') }}"
+          ansible_network_os: cisco.nxos.nxos
+          ansible_connection: ansible.netcommon.network_cli
         site1_l2:
           ansible_host: 198.18.4.102
-          ansible_user: admin
-          ansible_ssh_pass: C1sco12345
-          # ansible_network_os: cisco.nxos.nxos
+          ansible_user: "{{ lookup('env', 'SWITCH_USER') }}"
+          ansible_ssh_pass: "{{ lookup('env', 'SWITCH_PASS') }}"
+          ansible_network_os: cisco.nxos.nxos
+          ansible_connection: ansible.netcommon.network_cli
         site1_bl1:
           ansible_host: 198.18.4.103
-          ansible_user: admin
-          ansible_ssh_pass: C1sco12345
-          # ansible_network_os: cisco.nxos.nxos
+          ansible_user: "{{ lookup('env', 'SWITCH_USER') }}"
+          ansible_ssh_pass: "{{ lookup('env', 'SWITCH_PASS') }}"
+          ansible_network_os: cisco.nxos.nxos
+          ansible_connection: ansible.netcommon.network_cli
         site1_s1:
           ansible_host: 198.18.4.104
-          ansible_user: admin
-          ansible_ssh_pass: C1sco12345
-          # ansible_network_os: cisco.nxos.nxos
+          ansible_user: "{{ lookup('env', 'SWITCH_USER') }}"
+          ansible_ssh_pass: "{{ lookup('env', 'SWITCH_PASS') }}"
+          ansible_network_os: cisco.nxos.nxos
+          ansible_connection: ansible.netcommon.network_cli
         site1_s2:
           ansible_host: 198.18.4.105
-          ansible_user: admin
-          ansible_ssh_pass: C1sco12345
-          # ansible_network_os: cisco.nxos.nxos
+          ansible_user: "{{ lookup('env', 'SWITCH_USER') }}"
+          ansible_ssh_pass: "{{ lookup('env', 'SWITCH_PASS') }}"
+          ansible_network_os: cisco.nxos.nxos
+          ansible_connection: ansible.netcommon.network_cli
         site1_bgw1:
           ansible_host: 198.18.4.106
-          ansible_user: admin
-          ansible_ssh_pass: C1sco12345
-          # ansible_network_os: cisco.nxos.nxos
+          ansible_user: "{{ lookup('env', 'SWITCH_USER') }}"
+          ansible_ssh_pass: "{{ lookup('env', 'SWITCH_PASS') }}"
+          ansible_network_os: cisco.nxos.nxos
+          ansible_connection: ansible.netcommon.network_cli
     fabric2:
       hosts:
         site2_l1:
           ansible_host: 198.18.4.201
-          ansible_user: admin
-          ansible_ssh_pass: C1sco12345
-          # ansible_network_os: cisco.nxos.nxos
+          ansible_user: "{{ lookup('env', 'SWITCH_USER') }}"
+          ansible_ssh_pass: "{{ lookup('env', 'SWITCH_PASS') }}"
+          ansible_network_os: cisco.nxos.nxos
+          ansible_connection: ansible.netcommon.network_cli
         site2_s1:
           ansible_host: 198.18.4.202
-          ansible_user: admin
-          ansible_ssh_pass: C1sco12345
-          # ansible_network_os: cisco.nxos.nxos
+          ansible_user: "{{ lookup('env', 'SWITCH_USER') }}"
+          ansible_ssh_pass: "{{ lookup('env', 'SWITCH_PASS') }}"
+          ansible_network_os: cisco.nxos.nxos
+          ansible_connection: ansible.netcommon.network_cli
         site2_bgw1:
           ansible_host: 198.18.4.203
-          ansible_user: admin
-          ansible_ssh_pass: C1sco12345
-          # ansible_network_os: cisco.nxos.nxos
+          ansible_user: "{{ lookup('env', 'SWITCH_USER') }}"
+          ansible_ssh_pass: "{{ lookup('env', 'SWITCH_PASS') }}"
+          ansible_network_os: cisco.nxos.nxos
+          ansible_connection: ansible.netcommon.network_cli
