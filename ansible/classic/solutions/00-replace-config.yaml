@@ -1,0 +1,39 @@
+# file: backup-switches.yaml
+# Backup switch configs to the local Ansible control workstation
+
+# Gather current localhost facts for use in timestamps
+- hosts: localhost
+  become: false
+  gather_facts: true
+  connection: local
+
+# Back up Nexus switch configs
+- hosts: fabric1
+  gather_facts: false
+  connection: local
+
+  collections:
+    - cisco.nxos
+
+  vars:
+    config_directory: "./clean_configs"
+
+  tasks:
+  - name: Enable scp-server
+    nxos_feature:
+      feature: scp-server
+      state: enabled
+  
+  - name: Copy clean startup configuration to switch
+    nxos_file_copy:
+      local_file: "{{ config_directory }}/{{ inventory_hostname }}_clean.cfg"
+      remote_file: startup_config
+
+  - name: Replace startup_config
+    nxos_command:
+      commands:
+        - copy bootflash:startup_config startup-config
+
+  - name: Reboot the switch
+    nxos_reboot:
+      confirm: true
